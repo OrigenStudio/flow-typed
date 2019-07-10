@@ -3128,9 +3128,10 @@ declare module '@material-ui/core/IconButton/IconButton' {
 declare module '@material-ui/core/internal/SwitchBase' {
   import type { HTMLInputAttributes } from '@material-ui/core/@@dom';
   import type { StandardProps } from '@material-ui/core/flow-types';
-  import type { IconButtonProps } from '@material-ui/core/IconButton';
+  import type { IconButtonProps, IconButtonClassKey } from '@material-ui/core/IconButton';
 
   declare export type SwitchBaseClassKey =
+    | IconButtonClassKey
     | 'root'
     | 'checked'
     | 'disabled'
@@ -3923,6 +3924,44 @@ declare module '@material-ui/core/SvgIcon/SvgIcon' {
   declare export * from '@material-ui/core/SvgIcon'
 }
 
+declare module '@material-ui/core/Switch' {
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type {
+    SwitchBaseProps,
+    SwitchBaseClassKey,
+  } from '@material-ui/core/internal/SwitchBase';
+
+  declare export type SwitchClassKey =
+    | SwitchBaseClassKey
+    | 'switchBase'
+    | 'colorPrimary'
+    | 'colorSecondary'
+    | 'thumb'
+    | 'track';
+
+  declare export type SwitchProps = StandardProps<
+    SwitchClassKey,
+    {
+      checkedIcon?: React$Node,
+      color?: 'primary' | 'secondary' | 'default',
+      icon?: React$Node,
+    },
+    SwitchBaseProps,
+    {
+      checkedIcon: any,
+      color: any,
+      icon: any,
+    }
+  >;
+
+
+  declare export default React$ComponentType<SwitchProps>;
+}
+
+declare module '@material-ui/core/Switch/Switch' {
+  declare export * from '@material-ui/core/Switch'
+}
+
 declare module '@material-ui/core/TableSortLabel' {
   import type { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
   import type { ExtendButtonBase } from '@material-ui/core/ButtonBase';
@@ -4451,6 +4490,7 @@ declare module '@material-ui/core' {
   declare export { default as Menu } from '@material-ui/core/Menu';
   declare export { default as Popper } from '@material-ui/core/Popper';
   declare export { default as Select } from '@material-ui/core/Select';
+  declare export { default as Switch } from '@material-ui/core/Switch';
   declare export {
     default as TableFooter,
   } from '@material-ui/core/TableFooter';
