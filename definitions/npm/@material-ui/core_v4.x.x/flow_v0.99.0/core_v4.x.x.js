@@ -4367,6 +4367,33 @@ declare module '@material-ui/core/Select/Select' {
   declare export * from '@material-ui/core/Select'
 }
 
+declare module '@material-ui/core/useMediaQuery' {
+  declare type MuiMediaQueryListEvent = {|
+    matches: boolean;
+  |};
+  
+  declare type MuiMediaQueryList = {|
+    matches: boolean,
+    addListener?: (listener: MuiMediaQueryListListener) => void,
+    removeListener?: (listener: MuiMediaQueryListListener) => void,
+  |};
+  
+  declare export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
+  
+  declare type Options = {|
+    defaultMatches?: boolean;
+    noSsr?: boolean;
+    ssrMatchMedia?: (query: string) => MuiMediaQueryList;
+  |};
+
+  declare type UseMediaQuery = (query: string, options?: Options) => boolean;
+
+  declare export default UseMediaQuery;
+}
+declare module '@material-ui/core/useMediaQuery/useMediaQueryTheme' {
+  declare export { default } from '@material-ui/core/useMediaQuery'
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 declare module '@material-ui/core' {
@@ -4541,6 +4568,13 @@ declare module '@material-ui/core' {
   declare export {
     default as BottomNavigation,
   } from '@material-ui/core/BottomNavigation';
+
+  declare export {
+    default as useMediaQuery,
+  } from '@material-ui/core/useMediaQuery';
+  declare export {
+    default as useMediaQueryTheme,
+  } from '@material-ui/core/useMediaQuery/useMediaQueryTheme';
 
   // TODO more info: README.md Issue 2
   declare export {
