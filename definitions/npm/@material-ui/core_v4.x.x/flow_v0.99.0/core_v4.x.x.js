@@ -467,9 +467,9 @@ declare module '@material-ui/core/OverridableComponent' {
   /**
    * props if `component={Component}` is NOT used
    */
-  declare export type DefaultComponentProps<
-    M: OverridableTypeMap
-  > = BaseProps<M> &
+  declare export type DefaultComponentProps<M: OverridableTypeMap> = BaseProps<
+    M
+  > &
     $Diff<
       React$ElementConfig<$ElementType<M, 'defaultComponent'>>,
       BaseProps<M>
@@ -1190,7 +1190,7 @@ declare module '@material-ui/core/styles/shadows' {
     string,
     string,
     string,
-    string
+    string,
   ];
 
   declare export default Shadows;
@@ -2028,7 +2028,9 @@ declare module '@material-ui/core/BottomNavigationAction' {
     classKey: BottomNavigationActionClassKey,
   }>;
 
-  declare export type BottomNavigationActionProps = SimplifiedPropsOf<BottomNavigationAction>;
+  declare export type BottomNavigationActionProps = SimplifiedPropsOf<
+    BottomNavigationAction
+  >;
 
   declare export default BottomNavigationAction;
 }
@@ -3228,7 +3230,10 @@ declare module '@material-ui/core/IconButton/IconButton' {
 declare module '@material-ui/core/internal/SwitchBase' {
   import type { HTMLInputAttributes } from '@material-ui/core/@@dom';
   import type { StandardProps } from '@material-ui/core/flow-types';
-  import type { IconButtonProps, IconButtonClassKey } from '@material-ui/core/IconButton';
+  import type {
+    IconButtonProps,
+    IconButtonClassKey,
+  } from '@material-ui/core/IconButton';
 
   declare export type SwitchBaseClassKey =
     | IconButtonClassKey
@@ -3326,7 +3331,9 @@ declare module '@material-ui/core/ExpansionPanelSummary' {
     classKey: ExpansionPanelSummaryClassKey,
   }>;
 
-  declare export type ExpansionPanelSummaryProps = SimplifiedPropsOf<ExpansionPanelSummary>;
+  declare export type ExpansionPanelSummaryProps = SimplifiedPropsOf<
+    ExpansionPanelSummary
+  >;
 
   declare export default ExpansionPanelSummary;
 }
@@ -3433,7 +3440,7 @@ declare module '@material-ui/core/FormControl' {
   ((props: { href: string } & OverrideProps<ExtendButtonBFormControl<M>, 'a'>) => React$Node);
   */
   declare export type ExtendFormControl<
-    M: OverridableTypeMap,
+    M: OverridableTypeMap
   > = OverridableComponent<{
     props: FormControlOwnProps & $ElementType<M, 'props'>,
     defaultComponent: $ElementType<M, 'defaultComponent'>,
@@ -4069,7 +4076,6 @@ declare module '@material-ui/core/Switch' {
     }
   >;
 
-
   declare export default React$ComponentType<SwitchProps>;
 }
 
@@ -4250,7 +4256,10 @@ declare module '@material-ui/core/TableBody/TableBody' {
 
 declare module '@material-ui/core/TextField' {
   import type { StandardProps } from '@material-ui/core/flow-types';
-  import type { OverrideProps, OverridableComponent } from '@material-ui/core/OverridableComponent';
+  import type {
+    OverrideProps,
+    OverridableComponent,
+  } from '@material-ui/core/OverridableComponent';
   import type {
     FormControlOwnProps,
     FormControlClassKey,
@@ -4646,21 +4655,23 @@ declare module '@material-ui/core/Select/Select' {
 
 declare module '@material-ui/core/useMediaQuery' {
   declare type MuiMediaQueryListEvent = {|
-    matches: boolean;
+    matches: boolean,
   |};
-  
+
   declare type MuiMediaQueryList = {|
     matches: boolean,
     addListener?: (listener: MuiMediaQueryListListener) => void,
     removeListener?: (listener: MuiMediaQueryListListener) => void,
   |};
-  
-  declare export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
-  
+
+  declare export type MuiMediaQueryListListener = (
+    event: MuiMediaQueryListEvent
+  ) => void;
+
   declare type Options = {|
-    defaultMatches?: boolean;
-    noSsr?: boolean;
-    ssrMatchMedia?: (query: string) => MuiMediaQueryList;
+    defaultMatches?: boolean,
+    noSsr?: boolean,
+    ssrMatchMedia?: (query: string) => MuiMediaQueryList,
   |};
 
   declare type UseMediaQuery = (query: string, options?: Options) => boolean;
@@ -4668,14 +4679,14 @@ declare module '@material-ui/core/useMediaQuery' {
   declare export default UseMediaQuery;
 }
 declare module '@material-ui/core/useMediaQuery/useMediaQueryTheme' {
-  declare export { default } from '@material-ui/core/useMediaQuery'
+  declare export { default } from '@material-ui/core/useMediaQuery';
 }
 
 declare module '@material-ui/core/useScrollTrigger' {
   declare type Options = {|
-    disableHysteresis?: boolean;
-    target?: Node | mixed;
-    threshold?: number;
+    disableHysteresis?: boolean,
+    target?: Node | mixed,
+    threshold?: number,
   |};
 
   declare type UseScrollTrigger = (options?: Options) => boolean;
@@ -4752,21 +4763,31 @@ declare module '@material-ui/core' {
   declare export { default as Popper } from '@material-ui/core/Popper';
   declare export { default as Select } from '@material-ui/core/Select';
   declare export { default as Snackbar } from '@material-ui/core/Snackbar';
-  declare export { default as SnackbarContent } from '@material-ui/core/SnackbarContent';
+  declare export {
+    default as SnackbarContent,
+  } from '@material-ui/core/SnackbarContent';
   declare export { default as Step } from '@material-ui/core/Step';
   declare export { default as StepButton } from '@material-ui/core/StepButton';
-  declare export { default as StepConnector } from '@material-ui/core/StepConnector';
-  declare export { default as StepContent } from '@material-ui/core/StepContent';
+  declare export {
+    default as StepConnector,
+  } from '@material-ui/core/StepConnector';
+  declare export {
+    default as StepContent,
+  } from '@material-ui/core/StepContent';
   declare export { default as StepIcon } from '@material-ui/core/StepIcon';
   declare export { default as StepLabel } from '@material-ui/core/StepLabel';
   declare export { default as Stepper } from '@material-ui/core/Stepper';
-  declare export { default as SwipeableDrawer } from '@material-ui/core/SwipeableDrawer';
+  declare export {
+    default as SwipeableDrawer,
+  } from '@material-ui/core/SwipeableDrawer';
   declare export { default as Switch } from '@material-ui/core/Switch';
   declare export { default as Tab } from '@material-ui/core/Tab';
   declare export { default as Tabs } from '@material-ui/core/Tabs';
   declare export { default as Table } from '@material-ui/core/Table';
   declare export { default as TableCell } from '@material-ui/core/TableCell';
-  declare export { default as TablePagination } from '@material-ui/core/TablePagination';
+  declare export {
+    default as TablePagination,
+  } from '@material-ui/core/TablePagination';
   declare export {
     default as TableFooter,
   } from '@material-ui/core/TableFooter';
@@ -4894,9 +4915,7 @@ declare module '@material-ui/core' {
   declare export {
     default as useScrollTrigger,
   } from '@material-ui/core/useScrollTrigger';
-  declare export {
-    default as withWidth,
-  } from '@material-ui/core/withWidth';
+  declare export { default as withWidth } from '@material-ui/core/withWidth';
   declare export {
     default as withMobileDialog,
   } from '@material-ui/core/withMobileDialog';
