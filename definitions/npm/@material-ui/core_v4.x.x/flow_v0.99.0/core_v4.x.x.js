@@ -4671,9 +4671,12 @@ declare module '@material-ui/core/useMediaQuery/useMediaQueryTheme' {
   declare export { default } from '@material-ui/core/useMediaQuery'
 }
 
-// TODO: useScrollTrigger
 declare module '@material-ui/core/useScrollTrigger' {
-  declare type Options = any
+  declare type Options = {|
+    disableHysteresis?: boolean;
+    target?: Node | mixed;
+    threshold?: number;
+  |};
 
   declare type UseScrollTrigger = (options?: Options) => boolean;
 
