@@ -3307,6 +3307,7 @@ declare module '@material-ui/core/FormControl' {
   import type { PropTypes$Margin } from '@material-ui/core/flow-types';
   import type {
     OverridableComponent,
+    OverridableTypeMap,
     SimplifiedPropsOf,
   } from '@material-ui/core/OverridableComponent';
 
@@ -3316,17 +3317,31 @@ declare module '@material-ui/core/FormControl' {
     | 'marginDense'
     | 'fullWidth';
 
+  declare export type FormControlOwnProps = {
+    disabled?: boolean,
+    error?: boolean,
+    fullWidth?: boolean,
+    margin?: PropTypes$Margin,
+    onBlur?: ({}) => mixed,
+    onFocus?: ({}) => mixed,
+    required?: boolean,
+    variant?: 'standard' | 'outlined' | 'filled',
+  };
+
+  /*
+   TODO more info: README.md Issue 1
+  ((props: { href: string } & OverrideProps<ExtendButtonBFormControl<M>, 'a'>) => React$Node);
+  */
+  declare export type ExtendFormControl<
+    M: OverridableTypeMap,
+  > = OverridableComponent<{
+    props: FormControlOwnProps & $ElementType<M, 'props'>,
+    defaultComponent: $ElementType<M, 'defaultComponent'>,
+    classKey: $ElementType<M, 'classKey'>,
+  }>;
+
   declare type FormControl = OverridableComponent<{
-    props: {
-      disabled?: boolean,
-      error?: boolean,
-      fullWidth?: boolean,
-      margin?: PropTypes$Margin,
-      onBlur?: ({}) => mixed,
-      onFocus?: ({}) => mixed,
-      required?: boolean,
-      variant?: 'standard' | 'outlined' | 'filled',
-    },
+    props: FormControlOwnProps,
     defaultComponent: 'div',
     classKey: FormControlClassKey,
   }>;
@@ -4083,6 +4098,79 @@ declare module '@material-ui/core/TableBody/TableBody' {
   declare export * from '@material-ui/core/TableBody'
 }
 
+declare module '@material-ui/core/TextField' {
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { OverrideProps, OverridableComponent } from '@material-ui/core/OverridableComponent';
+  import type {
+    FormControlOwnProps,
+    FormControlClassKey,
+    ExtendFormControl,
+  } from '@material-ui/core/FormControl';
+  import type { FormHelperTextProps } from '@material-ui/core/FormHelperText';
+  import type { InputLabelProps } from '@material-ui/core/InputLabel';
+  import type { InputProps as StandardInputProps } from '@material-ui/core/Input';
+  import type { FilledInputProps } from '@material-ui/core/FilledInput';
+  import type { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
+  import type { SelectProps } from '@material-ui/core/Select';
+
+  declare export type TextFieldClassKey = FormControlClassKey;
+
+  declare type FormControlProps = $Diff<
+    FormControlOwnProps,
+    {
+      onChange: any,
+      defaultValue: any,
+    }
+  >;
+
+  declare type OwnProps = {
+    autoComplete?: string,
+    autoFocus?: boolean,
+    defaultValue?: mixed,
+    FormHelperTextProps?: FormHelperTextProps,
+    helperText?: React$Node,
+    InputLabelProps?: InputLabelProps,
+    label?: React$Node,
+    multiline?: boolean,
+    name?: string,
+    onChange?: (event: Event) => mixed,
+    placeholder?: string,
+    rows?: string | number,
+    rowsMax?: string | number,
+    select?: boolean,
+    SelectProps?: SelectProps,
+    type?: string,
+    value?: mixed,
+    // TODO: refine this types so they apply based on the provided `variant`
+    InputProps?: FilledInputProps | FilledInputProps | OutlinedInputProps,
+    inputProps?:
+      | $ElementType<FilledInputProps, 'inputProps'>
+      | $ElementType<FilledInputProps, 'inputProps'>
+      | $ElementType<OutlinedInputProps, 'inputProps'>,
+  };
+
+  declare export type TextFieldProps<
+    DefaultComponent: React$ElementType = 'div',
+    Props: {} = {}
+  > = OverrideProps<
+    {
+      props: Props & OwnProps & FormControlProps,
+      defaultComponent: DefaultComponent,
+      classKey: TextFieldClassKey,
+    },
+    DefaultComponent
+  >;
+
+  declare export default OverridableComponent<{
+    props: FormControlProps & OwnProps,
+    defaultComponent: 'div',
+    classKey: TextFieldClassKey,
+  }>;
+}
+declare module '@material-ui/core/TextField/TextField' {
+  declare export * from '@material-ui/core/TextField'
+}
+
 declare module '@material-ui/core/Popover' {
   import type { StandardProps } from '@material-ui/core/flow-types';
   import type { PaperProps } from '@material-ui/core/Paper';
@@ -4483,6 +4571,7 @@ declare module '@material-ui/core' {
   declare export { default as TableRow } from '@material-ui/core/TableRow';
   declare export { default as TableHead } from '@material-ui/core/TableHead';
   declare export { default as TableBody } from '@material-ui/core/TableBody';
+  declare export { default as TextField } from '@material-ui/core/TextField';
   declare export { default as Popover } from '@material-ui/core/Popover';
   declare export { default as ListItem } from '@material-ui/core/ListItem';
   declare export { default as MenuList } from '@material-ui/core/MenuList';
