@@ -2461,6 +2461,106 @@ declare module '@material-ui/core/Slide/Slide' {
   declare export * from '@material-ui/core/Slide'
 }
 
+// TODO: Snackbar
+declare module '@material-ui/core/Snackbar' {
+  declare export type SnackbarProps = any;
+
+  declare export default React$ComponentType<SnackbarProps>;
+}
+declare module '@material-ui/core/Snackbar/Snackbar' {
+  declare export * from '@material-ui/core/Snackbar'
+}
+
+// TODO: SnackbarContent
+declare module '@material-ui/core/SnackbarContent' {
+  declare export type SnackbarContentProps = any;
+
+  declare export default React$ComponentType<SnackbarContentProps>;
+}
+declare module '@material-ui/core/SnackbarContent/SnackbarContent' {
+  declare export * from '@material-ui/core/SnackbarContent'
+}
+
+// TODO: Step
+declare module '@material-ui/core/Step' {
+  declare export type StepProps = any;
+
+  declare export default React$ComponentType<StepProps>;
+}
+declare module '@material-ui/core/Step/Step' {
+  declare export * from '@material-ui/core/Step'
+}
+
+// TODO: StepButton
+declare module '@material-ui/core/StepButton' {
+  declare export type StepButtonProps = any;
+
+  declare export default React$ComponentType<StepButtonProps>;
+}
+declare module '@material-ui/core/StepButton/StepButton' {
+  declare export * from '@material-ui/core/StepButton'
+}
+
+// TODO: StepConnector
+declare module '@material-ui/core/StepConnector' {
+  declare export type StepConnectorProps = any;
+
+  declare export default React$ComponentType<StepConnectorProps>;
+}
+declare module '@material-ui/core/StepConnector/StepConnector' {
+  declare export * from '@material-ui/core/StepConnector'
+}
+
+// TODO: StepContent
+declare module '@material-ui/core/StepContent' {
+  declare export type StepContentProps = any;
+
+  declare export default React$ComponentType<StepContentProps>;
+}
+declare module '@material-ui/core/StepContent/StepContent' {
+  declare export * from '@material-ui/core/StepContent'
+}
+
+// TODO: StepIcon
+declare module '@material-ui/core/StepIcon' {
+  declare export type StepIconProps = any;
+
+  declare export default React$ComponentType<StepIconProps>;
+}
+declare module '@material-ui/core/StepIcon/StepIcon' {
+  declare export * from '@material-ui/core/StepIcon'
+}
+
+// TODO: StepLabel
+declare module '@material-ui/core/StepLabel' {
+  declare export type StepLabelProps = any;
+
+  declare export default React$ComponentType<StepLabelProps>;
+}
+declare module '@material-ui/core/StepLabel/StepLabel' {
+  declare export * from '@material-ui/core/StepLabel'
+}
+
+// TODO: Stepper
+declare module '@material-ui/core/Stepper' {
+  declare export type StepperProps = any;
+
+  declare export default React$ComponentType<StepperProps>;
+}
+declare module '@material-ui/core/Stepper/Stepper' {
+  declare export * from '@material-ui/core/Stepper'
+}
+
+// TODO: SwipeableDrawer
+declare module '@material-ui/core/SwipeableDrawer' {
+  declare export type SwipeableDrawerProps = any;
+
+  declare export default React$ComponentType<SwipeableDrawerProps>;
+}
+declare module '@material-ui/core/SwipeableDrawer/SwipeableDrawer' {
+  declare export * from '@material-ui/core/SwipeableDrawer'
+}
+
 declare module '@material-ui/core/Drawer' {
   import type { StandardProps } from '@material-ui/core/flow-types';
   import type { ModalProps } from '@material-ui/core/Modal';
@@ -3977,6 +4077,56 @@ declare module '@material-ui/core/Switch/Switch' {
   declare export * from '@material-ui/core/Switch'
 }
 
+// TODO: Tab
+declare module '@material-ui/core/Tab' {
+  declare export type TabProps = any;
+
+  declare export default React$ComponentType<TabProps>;
+}
+declare module '@material-ui/core/Tab/Tab' {
+  declare export * from '@material-ui/core/Tab'
+}
+
+// TODO: Tabs
+declare module '@material-ui/core/Tabs' {
+  declare export type TabsProps = any;
+
+  declare export default React$ComponentType<TabsProps>;
+}
+declare module '@material-ui/core/Tabs/Tabs' {
+  declare export * from '@material-ui/core/Tabs'
+}
+
+// TODO: Table
+declare module '@material-ui/core/Table' {
+  declare export type TableProps = any;
+
+  declare export default React$ComponentType<TableProps>;
+}
+declare module '@material-ui/core/Table/Table' {
+  declare export * from '@material-ui/core/Table'
+}
+
+// TODO: TableCell
+declare module '@material-ui/core/TableCell' {
+  declare export type TableCellProps = any;
+
+  declare export default React$ComponentType<TableCellProps>;
+}
+declare module '@material-ui/core/TableCell/TableCell' {
+  declare export * from '@material-ui/core/TableCell'
+}
+
+// TODO: TablePagination
+declare module '@material-ui/core/TablePagination' {
+  declare export type TablePaginationProps = any;
+
+  declare export default React$ComponentType<TablePaginationProps>;
+}
+declare module '@material-ui/core/TablePagination/TablePagination' {
+  declare export * from '@material-ui/core/TablePagination'
+}
+
 declare module '@material-ui/core/TableSortLabel' {
   import type { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
   import type { ExtendButtonBase } from '@material-ui/core/ButtonBase';
@@ -4521,6 +4671,25 @@ declare module '@material-ui/core/useMediaQuery/useMediaQueryTheme' {
   declare export { default } from '@material-ui/core/useMediaQuery'
 }
 
+// TODO: useScrollTrigger
+declare module '@material-ui/core/useScrollTrigger' {
+  declare type Options = any
+
+  declare type UseScrollTrigger = (options?: Options) => boolean;
+
+  declare export default UseScrollTrigger;
+}
+
+// TODO: withWidth
+declare module '@material-ui/core/withWidth' {
+  declare export default any;
+}
+
+// TODO: withMobileDialog
+declare module '@material-ui/core/withMobileDialog' {
+  declare export default any;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 declare module '@material-ui/core' {
@@ -4579,7 +4748,22 @@ declare module '@material-ui/core' {
   declare export { default as Menu } from '@material-ui/core/Menu';
   declare export { default as Popper } from '@material-ui/core/Popper';
   declare export { default as Select } from '@material-ui/core/Select';
+  declare export { default as Snackbar } from '@material-ui/core/Snackbar';
+  declare export { default as SnackbarContent } from '@material-ui/core/SnackbarContent';
+  declare export { default as Step } from '@material-ui/core/Step';
+  declare export { default as StepButton } from '@material-ui/core/StepButton';
+  declare export { default as StepConnector } from '@material-ui/core/StepConnector';
+  declare export { default as StepContent } from '@material-ui/core/StepContent';
+  declare export { default as StepIcon } from '@material-ui/core/StepIcon';
+  declare export { default as StepLabel } from '@material-ui/core/StepLabel';
+  declare export { default as Stepper } from '@material-ui/core/Stepper';
+  declare export { default as SwipeableDrawer } from '@material-ui/core/SwipeableDrawer';
   declare export { default as Switch } from '@material-ui/core/Switch';
+  declare export { default as Tab } from '@material-ui/core/Tab';
+  declare export { default as Tabs } from '@material-ui/core/Tabs';
+  declare export { default as Table } from '@material-ui/core/Table';
+  declare export { default as TableCell } from '@material-ui/core/TableCell';
+  declare export { default as TablePagination } from '@material-ui/core/TablePagination';
   declare export {
     default as TableFooter,
   } from '@material-ui/core/TableFooter';
@@ -4704,6 +4888,15 @@ declare module '@material-ui/core' {
   declare export {
     default as useMediaQueryTheme,
   } from '@material-ui/core/useMediaQuery/useMediaQueryTheme';
+  declare export {
+    default as useScrollTrigger,
+  } from '@material-ui/core/useScrollTrigger';
+  declare export {
+    default as withWidth,
+  } from '@material-ui/core/withWidth';
+  declare export {
+    default as withMobileDialog,
+  } from '@material-ui/core/withMobileDialog';
 
   // TODO more info: README.md Issue 2
   declare export {
