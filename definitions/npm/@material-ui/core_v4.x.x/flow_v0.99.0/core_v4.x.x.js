@@ -2473,9 +2473,20 @@ declare module '@material-ui/core/Snackbar/Snackbar' {
   declare export * from '@material-ui/core/Snackbar'
 }
 
-// TODO: SnackbarContent
 declare module '@material-ui/core/SnackbarContent' {
-  declare export type SnackbarContentProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { PaperProps } from '@material-ui/core/Paper';
+
+  declare export type SnackbarContentClassKey = 'root' | 'message' | 'action';
+  declare export type SnackbarContentProps = StandardProps<
+    SnackbarContentClassKey,
+    {
+      action?: React$Node,
+      message?: React$Node,
+    },
+    PaperProps,
+    void
+  >;
 
   declare export default React$ComponentType<SnackbarContentProps>;
 }
