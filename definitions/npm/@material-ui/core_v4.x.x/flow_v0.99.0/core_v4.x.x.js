@@ -1,6 +1,13 @@
 declare module '@material-ui/core/@@utils' {
   // Utilities used in this definition:
 
+  declare export type $$If<X: boolean, Then, Else = empty> = $Call<
+    ((true, Then, Else) => Then) & ((false, Then, Else) => Else),
+    X,
+    Then,
+    Else
+  >;
+
   // Currently the flow.js do not support `Pick` operator
   declare export type $$Pick<NamesMap, Obj> = $Diff<Obj, $Diff<Obj, NamesMap>>;
 }
@@ -244,6 +251,9 @@ declare module '@material-ui/core/@@csstype' {
   declare type MinWidthProperty<TLength> = Globals | TLength | string;
 
   declare export type Properties<TLength> = {
+    // add indexer property so css selectors, media queries or other css
+    // rules can be specified and used recursively
+    [cssRule: string]: string | number | Properties<TLength>,
     alignContent?: AlignContentProperty,
     alignItems?: AlignItemsProperty,
     alignSelf?: AlignSelfProperty,
@@ -1047,7 +1057,7 @@ declare module '@material-ui/core/styles/createStyles' {
   import type { StyleRules } from '@material-ui/core/styles/withStyles';
 
   declare export default {
-    <C: string>(styles: StyleRules<C>): StyleRules<C>,
+    <P: {}, C: string>(styles: StyleRules<P, C>): StyleRules<P, C>,
   };
 }
 declare module '@material-ui/core/styles/createTypography' {
@@ -1214,6 +1224,8 @@ declare module '@material-ui/core/styles/useTheme' {
 declare module '@material-ui/core/styles/withStyles' {
   import type { StyleSheetFactoryOptions } from '@material-ui/core/@@JSS';
   import type { CSS$Properties } from '@material-ui/core/@@dom';
+  import type { $$If } from '@material-ui/core/@@utils';
+  import type { Theme as MuiTheme } from '@material-ui/core/styles/createMuiTheme';
 
   declare export type CSSProperties = CSS$Properties;
 
@@ -1244,20 +1256,72 @@ declare module '@material-ui/core/styles/withStyles' {
     innerRef?: React$Ref<any>,
   };
 
+  declare export type ClassKeyOfStyles$ClassKey<ClassKey: string> = ClassKey;
+
+  declare export type ClassKeyOfStyles$Rules<
+    Rules: StyleRules<any, any>
+  > = $Keys<Rules>;
+
+  declare export type ClassKeyOfStyles$RulesCallback<
+    RulesCallback: StyleRulesCallback<any, any, any>
+  > = ClassKeyOfStyles$Rules<$Call<RulesCallback, any>>;
+
+  declare export type WithStyles$ClassKey<
+    ClassKey: string,
+    IncludeTheme: boolean = false
+  > = {
+    classes: ClassNameMap<ClassKeyOfStyles$ClassKey<ClassKey>>,
+    ...$Exact<$$If<IncludeTheme, { theme: MuiTheme }, {}>>,
+  };
+
+  declare export type WithStyles$Rules<
+    Rules: StyleRules<any, any>,
+    IncludeTheme: boolean = false
+  > = {
+    classes: ClassNameMap<ClassKeyOfStyles$Rules<Rules>>,
+    ...$Exact<$$If<IncludeTheme, { theme: MuiTheme }, {}>>,
+  };
+
+  declare export type WithStyles$RulesCallback<
+    RulesCallback: StyleRulesCallback<any, any, any>,
+    IncludeTheme: boolean = false
+  > = {
+    classes: ClassNameMap<ClassKeyOfStyles$RulesCallback<RulesCallback>>,
+    ...$Exact<$$If<IncludeTheme, { theme: MuiTheme }, {}>>,
+  };
+
+  declare export type WithStyles<
+    ClassKeyOrStyles:
+      | string
+      | StyleRules<any, any>
+      | StyleRulesCallback<any, any, any>,
+    IncludeTheme: boolean = false
+  > = WithStyles$ClassKey<ClassKeyOrStyles, IncludeTheme> &
+    WithStyles$Rules<ClassKeyOrStyles, IncludeTheme> &
+    WithStyles$RulesCallback<ClassKeyOrStyles, IncludeTheme>;
+
   declare export default {
-    <ClassKey: string, Options: WithStylesOptions & { withTheme: true }>(
-      style: Styles<ClassKey>,
+    <
+      ClassKey: string,
+      Options: WithStylesOptions & { withTheme: true },
+      Props: {}
+    >(
+      style: Styles<MuiTheme, Props, ClassKey>,
       options?: Options
-    ): <Comp: React$ComponentType<*>>(
+    ): <Comp: React$ComponentType<Props>>(
       Component: Comp
     ) => React$ComponentType<
       $Diff<React$ElementConfig<Comp>, { classes: any, theme: any }> &
         StyledComponentProps<ClassKey>
     >,
-    <ClassKey: string, Options: WithStylesOptions & { withTheme?: false }>(
-      style: Styles<ClassKey>,
+    <
+      ClassKey: string,
+      Options: WithStylesOptions & { withTheme?: false },
+      Props: {}
+    >(
+      style: Styles<MuiTheme, Props, ClassKey>,
       options?: Options
-    ): <Comp: React$ComponentType<*>>(
+    ): <Comp: React$ComponentType<Props>>(
       Component: Comp
     ) => React$ComponentType<
       $Diff<React$ElementConfig<Comp>, { classes: any }> &
