@@ -2463,10 +2463,51 @@ declare module '@material-ui/core/Slide/Slide' {
   declare export * from '@material-ui/core/Slide'
 }
 
-// TODO: Snackbar
 declare module '@material-ui/core/Snackbar' {
-  declare export type SnackbarProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { SnackbarContentProps } from '@material-ui/core/SnackbarContent';
+  import type {
+    TransitionHandlerProps,
+    TransitionProps,
+  } from '@material-ui/core/transitions/transition';
+  import type { ClickAwayListenerProps } from '@material-ui/core/ClickAwayListener';
 
+  declare export type SnackbarClassKey =
+    | 'root'
+    | 'anchorOriginTopCenter'
+    | 'anchorOriginBottomCenter'
+    | 'anchorOriginTopRight'
+    | 'anchorOriginBottomRight'
+    | 'anchorOriginTopLeft'
+    | 'anchorOriginBottomLeft';
+
+  declare export type SnackbarOrigin = {|
+    horizontal: 'left' | 'center' | 'right',
+    vertical: 'top' | 'bottom',
+  |};
+
+  declare export type SnackbarProps = StandardProps<
+    SnackbarClassKey,
+    {
+      action?: $ElementType<SnackbarContentProps, 'action'>,
+      anchorOrigin?: SnackbarOrigin,
+      autoHideDuration?: number | null,
+      ClickAwayListenerProps?: $Shape<ClickAwayListenerProps>,
+      ContentProps?: $Shape<SnackbarContentProps>,
+      disableWindowBlurListener?: boolean,
+      message?: $ElementType<SnackbarContentProps, 'message'>,
+      onClose?: (event: SyntheticEvent<any>, reason: string) => void,
+      onMouseEnter?: MouseEventHandler,
+      onMouseLeave?: MouseEventHandler,
+      open: boolean,
+      resumeHideDuration?: number,
+      TransitionComponent?: React$ComponentType<TransitionProps>,
+      transitionDuration?: $ElementType<TransitionProps, 'timeout'>,
+      TransitionProps?: TransitionProps,
+    },
+    $Shape<TransitionHandlerProps>,
+    void
+  >;
   declare export default React$ComponentType<SnackbarProps>;
 }
 declare module '@material-ui/core/Snackbar/Snackbar' {
