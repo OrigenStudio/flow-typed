@@ -2557,7 +2557,7 @@ declare module '@material-ui/core/Snackbar' {
       anchorOrigin?: SnackbarOrigin,
       autoHideDuration?: number | null,
       ClickAwayListenerProps?: $Shape<ClickAwayListenerProps>,
-      ContentProps?: $Shape<SnackbarContentProps>,
+      ContentProps?: { ...$Shape<SnackbarContentProps> },
       disableWindowBlurListener?: boolean,
       message?: $ElementType<SnackbarContentProps, 'message'>,
       onClose?: (event: SyntheticEvent<any>, reason: string) => void,

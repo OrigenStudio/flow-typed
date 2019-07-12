@@ -57,9 +57,9 @@ describe('own props', () => {
       anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       autoHideDuration={1000}
       ClickAwayListenerProps={{ onClickAway: () => {} }}
-      ContentProps={{ elevation: 1 }}
+      ContentProps={{ elevation: 1, 'aria-describedby': 'message-id' }}
       disableWindowBlurListener={true}
-      message={'str'}
+      message={<span id={'message-id'} />}
       onClose={() => {}}
       onMouseEnter={() => {}}
       onMouseLeave={() => {}}
@@ -135,6 +135,10 @@ describe('own props', () => {
       open={true}
       // $ExpectError: `__left` is not in enum
       anchorOrigin={{ horizontal: '__left', vertical: 'top' }}
+      // $ExpectError
+      ContentProps={{ elevation: 'needs number' }}
+      // $ExpectError
+      TransitionProps={{ onEntering: 'needs function' }}
     />;
 
     <Snackbar
