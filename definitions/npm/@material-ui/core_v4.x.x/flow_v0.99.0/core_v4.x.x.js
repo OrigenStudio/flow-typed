@@ -2599,9 +2599,32 @@ declare module '@material-ui/core/SnackbarContent/SnackbarContent' {
   declare export * from '@material-ui/core/SnackbarContent'
 }
 
-// TODO: Step
 declare module '@material-ui/core/Step' {
-  declare export type StepProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { Orientation } from '@material-ui/core/Stepper';
+
+  declare export type StepClasskey =
+    | 'root'
+    | 'horizontal'
+    | 'vertical'
+    | 'alternativeLabel';
+
+  declare export type StepProps = StandardProps<
+    StepClasskey,
+    {
+      active?: boolean,
+      alternativeLabel?: boolean,
+      children?: React$Node,
+      completed?: boolean,
+      connector?: React$Element<any>,
+      disabled?: boolean,
+      index?: number,
+      last?: boolean,
+      orientation?: Orientation,
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<StepProps>;
 }
@@ -2659,9 +2682,31 @@ declare module '@material-ui/core/StepLabel/StepLabel' {
   declare export * from '@material-ui/core/StepLabel'
 }
 
-// TODO: Stepper
 declare module '@material-ui/core/Stepper' {
-  declare export type StepperProps = any;
+  import type { PaperProps } from '@material-ui/core/Paper';
+  import type { StandardProps } from '@material-ui/core/flow-types';
+
+  declare export type StepperClassKey =
+    | 'root'
+    | 'horizontal'
+    | 'vertical'
+    | 'alternativeLabel';
+
+  declare export type Orientation = 'horizontal' | 'vertical';
+
+  declare export type StepperProps = StandardProps<
+    StepperClassKey,
+    {
+      activeStep?: number,
+      alternativeLabel?: boolean,
+      children: React$Node,
+      connector?: React$ElementType | React$Node,
+      nonLinear?: boolean,
+      orientation?: Orientation,
+    },
+    PaperProps,
+    void
+  >;
 
   declare export default React$ComponentType<StepperProps>;
 }
