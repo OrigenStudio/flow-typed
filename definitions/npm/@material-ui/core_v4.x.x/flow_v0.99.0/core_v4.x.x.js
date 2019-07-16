@@ -1994,11 +1994,13 @@ declare module '@material-ui/core/ButtonBase' {
     classKey: $ElementType<M, 'classKey'>,
   }>;
 
-  declare type ButtonBase = OverridableComponent<{
+  declare export type ButtonBaseTypeMap = {
     props: ButtonBaseOwnProps,
     defaultComponent: 'button',
     classKey: ButtonBaseClassKey,
-  }>;
+  };
+
+  declare type ButtonBase = OverridableComponent<ButtonBaseTypeMap>;
 
   declare export type ButtonBaseProps = ButtonBaseOwnProps;
 
@@ -2632,9 +2634,38 @@ declare module '@material-ui/core/Step/Step' {
   declare export * from '@material-ui/core/Step'
 }
 
-// TODO: StepButton
 declare module '@material-ui/core/StepButton' {
-  declare export type StepButtonProps = any;
+  import type { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
+  import type {
+    ButtonBaseTypeMap,
+    ExtendButtonBase,
+  } from '@material-ui/core/ButtonBase';
+  import type { Orientation } from '@material-ui/core/Stepper';
+
+  declare export type StepButtonClassKey = 'root' | 'vertical' | 'touchRipple';
+
+  declare export type StepButtonIcon =
+    | React$ElementType
+    | string
+    | number
+    | null;
+
+  declare var StepButton: ExtendButtonBase<{
+    props: {
+      active?: boolean,
+      alternativeLabel?: boolean,
+      completed?: boolean,
+      disabled?: boolean,
+      icon?: StepButtonIcon,
+      last?: boolean,
+      optional?: React$Node,
+      orientation?: Orientation,
+    },
+    defaultComponent: $ElementType<ButtonBaseTypeMap, 'defaultComponent'>,
+    classKey: StepButtonClassKey,
+  }>;
+
+  declare export type StepButtonProps = SimplifiedPropsOf<typeof StepButton>;
 
   declare export default React$ComponentType<StepButtonProps>;
 }
@@ -2642,9 +2673,35 @@ declare module '@material-ui/core/StepButton/StepButton' {
   declare export * from '@material-ui/core/StepButton'
 }
 
-// TODO: StepConnector
 declare module '@material-ui/core/StepConnector' {
-  declare export type StepConnectorProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { Orientation } from '@material-ui/core/Stepper';
+
+  declare export type StepConnectorClasskey =
+    | 'root'
+    | 'horizontal'
+    | 'vertical'
+    | 'alternativeLabel'
+    | 'active'
+    | 'completed'
+    | 'disabled'
+    | 'line'
+    | 'lineHorizontal'
+    | 'lineVertical';
+
+  declare export type StepConnectorProps = StandardProps<
+    StepConnectorClasskey,
+    {
+      active?: boolean,
+      alternativeLabel?: boolean,
+      completed?: boolean,
+      disabled?: boolean,
+      index?: number,
+      orientation?: Orientation,
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<StepConnectorProps>;
 }
@@ -2662,9 +2719,27 @@ declare module '@material-ui/core/StepContent/StepContent' {
   declare export * from '@material-ui/core/StepContent'
 }
 
-// TODO: StepIcon
 declare module '@material-ui/core/StepIcon' {
-  declare export type StepIconProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+
+  declare export type StepIconClasskey =
+    | 'root'
+    | 'text'
+    | 'active'
+    | 'completed'
+    | 'error';
+
+  declare export type StepIconProps = StandardProps<
+    StepIconClasskey,
+    {
+      active?: boolean,
+      completed?: boolean,
+      error?: boolean,
+      icon: React$Node,
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<StepIconProps>;
 }
