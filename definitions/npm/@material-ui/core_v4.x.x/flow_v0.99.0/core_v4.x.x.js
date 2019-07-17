@@ -2711,7 +2711,29 @@ declare module '@material-ui/core/StepConnector/StepConnector' {
 
 // TODO: StepContent
 declare module '@material-ui/core/StepContent' {
-  declare export type StepContentProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { Orientation } from '@material-ui/core/Stepper';
+  import type { TransitionProps } from '@material-ui/core/transitions/transition';
+
+  declare export type StepContentClasskey = 'root' | 'last' | 'transition';
+
+  declare export type StepContentProps = StandardProps<
+    StepContentClasskey,
+    {
+      active?: boolean,
+      alternativeLabel?: boolean,
+      children: React$Node,
+      completed?: boolean,
+      last?: boolean,
+      optional?: boolean,
+      orientation?: Orientation,
+      TransitionComponent?: React$ComponentType<TransitionProps>,
+      transitionDuration?: $ElementType<TransitionProps, 'timeout'> | 'auto',
+      TransitionProps?: TransitionProps,
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<StepContentProps>;
 }
@@ -2722,7 +2744,7 @@ declare module '@material-ui/core/StepContent/StepContent' {
 declare module '@material-ui/core/StepIcon' {
   import type { StandardProps } from '@material-ui/core/flow-types';
 
-  declare export type StepIconClasskey =
+  declare export type StepIconClassKey =
     | 'root'
     | 'text'
     | 'active'
@@ -2730,7 +2752,7 @@ declare module '@material-ui/core/StepIcon' {
     | 'error';
 
   declare export type StepIconProps = StandardProps<
-    StepIconClasskey,
+    StepIconClassKey,
     {
       active?: boolean,
       completed?: boolean,
@@ -2747,9 +2769,44 @@ declare module '@material-ui/core/StepIcon/StepIcon' {
   declare export * from '@material-ui/core/StepIcon'
 }
 
-// TODO: StepLabel
 declare module '@material-ui/core/StepLabel' {
-  declare export type StepLabelProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { Orientation } from '@material-ui/core/Stepper';
+  import type { StepButtonIcon } from '@material-ui/core/StepButton';
+  import type { StepIconProps } from '@material-ui/core/StepIcon';
+
+  declare export type StepLabelClassKey =
+    | 'root'
+    | 'horizontal'
+    | 'vertical'
+    | 'active'
+    | 'completed'
+    | 'alternativeLabel'
+    | 'error'
+    | 'disabled'
+    | 'label'
+    | 'iconContainer'
+    | 'labelContainer';
+
+  declare export type StepLabelProps = StandardProps<
+    StepLabelClassKey,
+    {
+      active?: boolean,
+      alternativeLabel?: boolean,
+      children: React$Node,
+      completed?: boolean,
+      disabled?: boolean,
+      error?: boolean,
+      icon?: StepButtonIcon,
+      last?: boolean,
+      optional?: React$Node,
+      orientation?: Orientation,
+      StepIconComponent?: React$ElementType,
+      StepIconProps?: $Shape<StepIconProps>,
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<StepLabelProps>;
 }

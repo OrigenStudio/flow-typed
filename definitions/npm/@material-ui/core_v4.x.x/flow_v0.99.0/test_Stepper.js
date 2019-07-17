@@ -82,9 +82,9 @@ describe('own props', () => {
       activeStep={'needs number'}
       // $ExpectError
       alternativeLabel={'needs boolean'}
-      // $ExpectError: needs react node
+      // $ExpectError: needs React node
       children={() => {}}
-      // $ExpectError: needs react node
+      // $ExpectError: needs React node
       connector={() => {}}
       // $ExpectError
       nonLinear={'needs boolean'}
