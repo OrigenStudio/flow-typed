@@ -35,13 +35,26 @@ describe('withStyles', () => {
     withStyles<CK1, *, P1>({
       root: ({ customProp }) => {
         (customProp: string);
-        return {};
+        return {
+          display: 'flex',
+          '& .inner-selector': { display: 'block' },
+        };
       },
     })(C);
     withStyles<CK1, *, P1>({
       root: {
         display: 'flex',
         '& .inner-selector': { display: 'block' },
+      },
+    })(C);
+    withStyles<CK1, *, P1>({
+      root: {
+        display: 'flex',
+        '& .inner-selector': { display: 'block' },
+        position: ({ customProp }) => {
+          (customProp: string);
+          return 'relative';
+        },
       },
     })(C);
 
@@ -74,11 +87,20 @@ describe('withStyles', () => {
     withStyles<CK1, *, P1>({ root: () => {} })(C);
     // $ExpectError: callable style rule must return valid CSS properties
     withStyles<CK1, *, P1>({ root: () => 'expects object' })(C);
-    // $ExpectError: `unknownProp`is missing in `P`
     withStyles<CK1, *, P1>({
+      // $ExpectError: `unknownProp`is missing in `P`
       root: ({ unknownProp }) => {
         (unknownProp: string);
         return {};
+      },
+    })(C);
+    withStyles<CK1, *, P1>({
+      root: {
+        // $ExpectError: `unknownProp`is missing in `P`
+        display: ({ unknownProp }) => {
+          (unknownProp: string);
+          return 'flex';
+        },
       },
     })(C);
 
@@ -96,11 +118,20 @@ describe('withStyles', () => {
     withStyles<CK1, *, P1>((theme: Theme) => ({
       root: () => 'expects object',
     }))(C);
-    // $ExpectError: `unknownProp`is missing in `P`
     withStyles<CK1, *, P1>((theme: Theme) => ({
+      // $ExpectError: `unknownProp`is missing in `P`
       root: ({ unknownProp }) => {
         (unknownProp: string);
         return {};
+      },
+    }))(C);
+    withStyles<CK1, *, P1>((theme: Theme) => ({
+      root: {
+        // $ExpectError: `unknownProp`is missing in `P`
+        display: ({ unknownProp }) => {
+          (unknownProp: string);
+          return 'flex';
+        },
       },
     }))(C);
   });
