@@ -2709,7 +2709,6 @@ declare module '@material-ui/core/StepConnector/StepConnector' {
   declare export * from '@material-ui/core/StepConnector'
 }
 
-// TODO: StepContent
 declare module '@material-ui/core/StepContent' {
   import type { StandardProps } from '@material-ui/core/flow-types';
   import type { Orientation } from '@material-ui/core/Stepper';
@@ -4376,11 +4375,42 @@ declare module '@material-ui/core/Switch/Switch' {
   declare export * from '@material-ui/core/Switch'
 }
 
-// TODO: Tab
 declare module '@material-ui/core/Tab' {
-  declare export type TabProps = any;
+  import type { ExtendButtonBase } from '@material-ui/core/ButtonBase';
+  import type { SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
-  declare export default React$ComponentType<TabProps>;
+  declare export type TabClassKey =
+    | 'root'
+    | 'labelIcon'
+    | 'textColorInherit'
+    | 'textColorPrimary'
+    | 'textColorSecondary'
+    | 'selected'
+    | 'disabled'
+    | 'fullWidth'
+    | 'wrapped'
+    | 'wrapper';
+
+  declare type Tab = ExtendButtonBase<{
+    props: {
+      disableFocusRipple?: boolean,
+      fullWidth?: boolean,
+      icon?: string | React$Element<any>,
+      label?: React$Node,
+      onChange?: (event: SyntheticEvent<>, value: mixed) => mixed,
+      onClick?: (event: SyntheticEvent<>) => mixed,
+      selected?: boolean,
+      textColor?: string | 'secondary' | 'primary' | 'inherit',
+      value?: mixed,
+      wrapped?: boolean,
+    },
+    defaultComponent: 'div',
+    classKey: TabClassKey,
+  }>;
+
+  declare export type TabsProps = SimplifiedPropsOf<Tab>;
+
+  declare export default Tab;
 }
 declare module '@material-ui/core/Tab/Tab' {
   declare export * from '@material-ui/core/Tab'
@@ -4398,7 +4428,25 @@ declare module '@material-ui/core/Tabs/Tabs' {
 
 // TODO: Table
 declare module '@material-ui/core/Table' {
-  declare export type TableProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+
+  declare export type Padding =  'default' | 'checkbox' | 'none';
+
+  declare export type Size = 'small' | 'medium';
+
+  declare export type TableClassKey = 'root';
+
+  declare export type TableBaseProps = React$TableHTMLAttributes<HTMLTableElement>;
+
+  declare export type TableProps = StandardProps<
+    TableBaseProps,
+    TableClassKey,
+    {
+      component?: React.ElementType<TableBaseProps>,
+      padding?: Padding,
+      size?: Size,
+    }
+  >;
 
   declare export default React$ComponentType<TableProps>;
 }

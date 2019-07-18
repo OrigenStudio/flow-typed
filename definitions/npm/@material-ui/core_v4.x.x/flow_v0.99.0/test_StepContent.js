@@ -62,6 +62,8 @@ describe('own props', () => {
       TransitionProps={{ mountOnEnter: false }}
     />;
 
+    <StepContent children={<span />} transitionDuration={'auto'} />;
+
     <StepContent
       active={undefined}
       alternativeLabel={undefined}
