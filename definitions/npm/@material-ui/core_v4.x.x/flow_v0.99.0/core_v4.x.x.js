@@ -1229,11 +1229,20 @@ declare module '@material-ui/core/styles/withStyles' {
 
   declare export type CSSProperties = CSS$Properties;
 
-  declare export type StyleRules<Props, ClassKey> = {
+  declare export type CSSStyleRule<Props> =
+    | string
+    | number
     // TODO: remove `$Shape`, README.md Issue 3
-    +[ClassKey]:
-      | $Shape<CSSProperties>
-      | ((props: Props) => $Shape<CSSProperties>),
+    | $Shape<{ [string]: CSSStyleRule<Props> }>
+    | ((props: Props) => CSSStyleRule<Props>);
+
+  declare export type StyleRule<Props> =
+    // TODO: remove `$Shape`, README.md Issue 3
+    | $Shape<{ [string]: CSSStyleRule<Props> }>
+    | ((props: Props) => StyleRule<Props>);
+
+  declare export type StyleRules<Props, ClassKey> = {
+    +[ClassKey]: StyleRule<Props>,
   };
 
   declare export type StyleRulesCallback<Theme, Props, ClassKey> = (
@@ -2559,7 +2568,7 @@ declare module '@material-ui/core/Snackbar' {
       anchorOrigin?: SnackbarOrigin,
       autoHideDuration?: number | null,
       ClickAwayListenerProps?: $Shape<ClickAwayListenerProps>,
-      ContentProps?: $Shape<SnackbarContentProps>,
+      ContentProps?: { ...$Shape<SnackbarContentProps> },
       disableWindowBlurListener?: boolean,
       message?: $ElementType<SnackbarContentProps, 'message'>,
       onClose?: (event: SyntheticEvent<any>, reason: string) => void,
