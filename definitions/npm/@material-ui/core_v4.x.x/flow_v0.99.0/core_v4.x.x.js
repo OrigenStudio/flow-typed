@@ -2845,9 +2845,29 @@ declare module '@material-ui/core/Stepper/Stepper' {
   declare export * from '@material-ui/core/Stepper'
 }
 
-// TODO: SwipeableDrawer
 declare module '@material-ui/core/SwipeableDrawer' {
-  declare export type SwipeableDrawerProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+  import type { DrawerProps, DrawerClassKey } from '@material-ui/core/Drawer';
+
+  declare export type SwipeableDrawerClassKey = DrawerClassKey;
+
+  declare export type SwipeableDrawerProps = StandardProps<
+    SwipeableDrawerClassKey,
+    {
+      disableBackdropTransition?: boolean,
+      disableDiscovery?: boolean,
+      disableSwipeToOpen?: boolean,
+      hysteresis?: number,
+      minFlingVelocity?: number,
+      onClose: (event: {}, expanded: boolean) => mixed,
+      onOpen: (event: {}, expanded: boolean) => mixed,
+      open: boolean,
+      SwipeAreaProps?: {},
+      swipeAreaWidth?: number,
+    },
+    DrawerProps<React$ElementType>,
+    { onClose: any, open: any }
+  >;
 
   declare export default React$ComponentType<SwipeableDrawerProps>;
 }
@@ -4426,26 +4446,23 @@ declare module '@material-ui/core/Tabs/Tabs' {
   declare export * from '@material-ui/core/Tabs'
 }
 
-// TODO: Table
 declare module '@material-ui/core/Table' {
   import type { StandardProps } from '@material-ui/core/flow-types';
 
-  declare export type Padding =  'default' | 'checkbox' | 'none';
-
-  declare export type Size = 'small' | 'medium';
-
   declare export type TableClassKey = 'root';
 
-  declare export type TableBaseProps = React$TableHTMLAttributes<HTMLTableElement>;
+  declare export type Padding = 'default' | 'checkbox' | 'none';
+  declare export type Size = 'small' | 'medium';
 
   declare export type TableProps = StandardProps<
-    TableBaseProps,
     TableClassKey,
     {
-      component?: React.ElementType<TableBaseProps>,
+      component?: React$ElementType,
       padding?: Padding,
       size?: Size,
-    }
+    },
+    {},
+    void
   >;
 
   declare export default React$ComponentType<TableProps>;
@@ -4454,9 +4471,39 @@ declare module '@material-ui/core/Table/Table' {
   declare export * from '@material-ui/core/Table'
 }
 
-// TODO: TableCell
 declare module '@material-ui/core/TableCell' {
-  declare export type TableCellProps = any;
+  import type { StandardProps } from '@material-ui/core/flow-types';
+
+  declare export type TableCellClassKey =
+    | 'root'
+    | 'head'
+    | 'body'
+    | 'footer'
+    | 'alignLeft'
+    | 'alignCenter'
+    | 'alignRight'
+    | 'alignJustify'
+    | 'sizeSmall'
+    | 'paddingCheckbox'
+    | 'paddingNone';
+
+  declare export type Padding = 'default' | 'checkbox' | 'none';
+  declare export type Size = 'small' | 'medium';
+  declare export type SortDirection = 'asc' | 'desc' | false;
+
+  declare export type TableCellProps = StandardProps<
+    TableCellClassKey,
+    {
+      align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
+      component?: React$ElementType,
+      padding?: Padding,
+      size?: Size,
+      sortDirection?: SortDirection,
+      variant?: 'head' | 'body' | 'footer',
+    },
+    {},
+    void
+  >;
 
   declare export default React$ComponentType<TableCellProps>;
 }
