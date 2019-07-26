@@ -921,7 +921,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     direction?: Direction,
     mixins?: MixinsOptions,
     overrides?: Overrides,
-    palette?: PaletteOptions,
+    palette?: PaletteOptions | Palette,
     props?: ComponentsProps,
     shadows?: Shadows,
     spacing?: SpacingOptions,
