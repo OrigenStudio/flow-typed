@@ -4264,7 +4264,7 @@ declare module '@material-ui/core/Tooltip' {
   declare export type TooltipProps = StandardProps<
     TooltipClassKey,
     {
-      children: React$ElementType,
+      children: React$Element<any>,
       disableFocusListener?: boolean,
       disableHoverListener?: boolean,
       disableTouchListener?: boolean,
