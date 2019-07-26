@@ -1229,9 +1229,13 @@ declare module '@material-ui/core/styles/withStyles' {
 
   declare export type CSSProperties = CSS$Properties;
 
-  declare export type CSSStyleRule<Props> =
+  declare export type CSSStyleRuleBase =
     | string
     | number
+    | Array<CSSStyleRuleBase>;
+
+  declare export type CSSStyleRule<Props> =
+    | CSSStyleRuleBase
     // TODO: remove `$Shape`, README.md Issue 3
     | $Shape<{ [string]: CSSStyleRule<Props> }>
     | ((props: Props) => CSSStyleRule<Props>);

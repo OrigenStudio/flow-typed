@@ -38,6 +38,8 @@ describe('withStyles', () => {
         return {
           display: 'flex',
           '& .inner-selector': { display: 'block' },
+          padding: [[10, 20]],
+          transition: ['width 2s', ['height', '2s']],
         };
       },
     })(C);
@@ -45,12 +47,16 @@ describe('withStyles', () => {
       root: {
         display: 'flex',
         '& .inner-selector': { display: 'block' },
+        padding: [[10, 20]],
+        transition: ['width 2s', ['height', '2s']],
       },
     })(C);
     withStyles<CK1, *, P1>({
       root: {
         display: 'flex',
         '& .inner-selector': { display: 'block' },
+        padding: [[10, 20]],
+        transition: ['width 2s', ['height', '2s']],
         position: ({ customProp }) => {
           (customProp: string);
           return 'relative';
@@ -70,6 +76,8 @@ describe('withStyles', () => {
       root: ({ customProp }) => ({
         display: 'flex',
         '& .inner-selector': { display: 'block' },
+        padding: [[10, 20]],
+        transition: ['width 2s', ['height', '2s']],
       }),
     }))(C);
   });
@@ -91,7 +99,12 @@ describe('withStyles', () => {
       // $ExpectError: `unknownProp`is missing in `P`
       root: ({ unknownProp }) => {
         (unknownProp: string);
-        return {};
+        return {
+          // $ExpectError: css rule list should be base style rules
+          padding: [{}],
+          // $ExpectError: css rule list should be base style rules
+          transition: ['width 2s', [{}]],
+        };
       },
     })(C);
     withStyles<CK1, *, P1>({
@@ -101,6 +114,10 @@ describe('withStyles', () => {
           (unknownProp: string);
           return 'flex';
         },
+        // $ExpectError: css rule list should be base style rules
+        padding: () => [{}],
+        // $ExpectError: css rule list should be base style rules
+        transition: () => ['width 2s', [{}]],
       },
     })(C);
 
@@ -122,7 +139,12 @@ describe('withStyles', () => {
       // $ExpectError: `unknownProp`is missing in `P`
       root: ({ unknownProp }) => {
         (unknownProp: string);
-        return {};
+        return {
+          // $ExpectError: css rule list should be base style rules
+          padding: [{}],
+          // $ExpectError: css rule list should be base style rules
+          transition: ['width 2s', [{}]],
+        };
       },
     }))(C);
     withStyles<CK1, *, P1>((theme: Theme) => ({
@@ -132,6 +154,10 @@ describe('withStyles', () => {
           (unknownProp: string);
           return 'flex';
         },
+        // $ExpectError: css rule list should be base style rules
+        padding: () => [{}],
+        // $ExpectError: css rule list should be base style rules
+        transition: () => ['width 2s', [{}]],
       },
     }))(C);
   });
