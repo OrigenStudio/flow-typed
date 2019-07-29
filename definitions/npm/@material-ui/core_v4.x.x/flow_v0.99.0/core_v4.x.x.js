@@ -3207,6 +3207,8 @@ declare module '@material-ui/core/Hidden' {
   import type { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
   declare export type HiddenProps = {|
+    children?: React$Node,
+    className?: string,
     implementation?: 'js' | 'css',
     initialWidth?: Breakpoint,
     only?: Breakpoint | Array<Breakpoint>,

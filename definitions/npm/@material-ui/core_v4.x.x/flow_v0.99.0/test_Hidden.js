@@ -16,6 +16,7 @@ describe('imports', () => {
 describe('own props', () => {
   it('should passes when used properly', () => {
     <Hidden
+      className={'custom-class'}
       implementation={'css'}
       only={['sm', 'lg']}
       initialWidth={'xl'}
@@ -29,11 +30,14 @@ describe('own props', () => {
       xlUp={false}
       xsDown={false}
       xsUp={false}
-    />;
+    >
+      <span>Hide me!</span>
+    </Hidden>;
 
     <Hidden implementation={'js'} only={'lg'} />;
 
     <Hidden
+      className={undefined}
       implementation={undefined}
       only={undefined}
       initialWidth={undefined}
@@ -52,6 +56,8 @@ describe('own props', () => {
 
   it('should raises an error when pass incompatible types', () => {
     <Hidden
+      // $ExpectError: expects a string
+      className={1}
       // $ExpectError: `__ups` is missing in enum
       implementation={'__ups'}
       // $ExpectError: `__ups` is missing in enum
