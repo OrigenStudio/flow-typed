@@ -1230,6 +1230,7 @@ declare module '@material-ui/core/styles/withStyles' {
   declare export type CSSProperties = CSS$Properties;
 
   declare export type CSSStyleRuleBase =
+    | void
     | string
     | number
     | Array<CSSStyleRuleBase>;
